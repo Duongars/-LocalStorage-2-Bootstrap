@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>homework1</title>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+      <style>
+        ol {
+            width: 40%;
+        }
+        div {
+            width: 50%;
+        }
+      </style>
+</head>
+<body>
+    <h2>Note Manager</h2>
+    <div class="mb-3">
+        <input type="text" class="form-control" id="notetitle" placeholder="title">
+      </div>
+    <div class="mb-3">
+        <input type="text" class="form-control" id="notecontent" placeholder="content">
+      </div>
+      <button type="button" class="btn btn-primary" id="addBtn">Add Note</button>
+      <ol class="list-group list-group-numbered" style="margin-top: 10px;">
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">Subheading</div>
+            Content for list item
+          </div>
+          <button type="button" class="btn btn-primary">Delete Note</button>
+        </li>
+       
+      </ol>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+      <script>
+        let addBtn = document.querySelector("#addBtn");
+        let noteTitle = document.querySelector("#notetitle");
+        let noteContent = document.querySelector("#notecontent");
+        let notesDisplay= document.querySelector(".list-group")
+        let notes={};
+        addBtn.onclick = function () {
+            notes[noteTitle.value]= noteContent.value;
+            noteTitle.value="";
+            noteContent.value="";
+           renderData();
+        }
+
+        function renderData() {
+            notesDisplay.innerHTML= "";
+            for (const note in notes) {
+                notesDisplay.innerHTML+= `<li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">${note}</div>
+            ${notes[note]}
+          </div>
+          <button type="button" class="btn btn-primary">Delete Note</button>
+        </li>`
+            }
+
+        }
+
+        notesDisplay.onclick = function (e) {
+            if (e.target.classList.contains('btn-primary')) {
+                deleteNote(e.target)
+            }
+        }
+        function deleteNote(e) {
+            // debugger
+          let a =  e.parentElement.querySelector(".fw-bold").innerText;
+            delete notes[a];
+            e.parentElement.remove();
+        }
+
+      </script>
+</body>
+</html>

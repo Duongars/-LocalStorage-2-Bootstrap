@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>homework2</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <style>
+        body {
+
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h2>Score Game</h2>
+        <button type="button" class="btn btn-primary">Play</button>
+        <p id="scorenode">Score: 0</p>
+        <p id="highscore">High score</p>
+
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let btn = document.querySelector('button');
+        let score = 0;
+        let highScore = Number(JSON.parse(localStorage.getItem("highScore"))||0) ;
+        let scoreNode = document.querySelector("#scorenode");
+        let highScoreNode = document.querySelector("#highscore");
+
+      
+            //   localStorage.setItem("highScore", JSON.stringify(highScore))
+            highScoreNode.innerHTML =`High Score: ${highScore}`
+        btn.onclick = function () {
+            
+            score++;
+            scoreNode.innerHTML =`Score: ${score}`
+            if (highScore<=score) {
+                highScore = score;
+                localStorage.setItem("highScore", JSON.stringify(highScore))
+                highScoreNode.innerHTML =`High Score: ${highScore}`
+            }
+
+        }
+
+//   localStorage.removeItem("highScore");
+
+    </script>
+</body>
+
+</html>
