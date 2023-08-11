@@ -17,6 +17,11 @@
             align-items: center;
 
         }
+        button {
+            position: relative;
+            top : 400px;
+            left : -900px;
+        }
     </style>
 </head>
 
@@ -42,8 +47,10 @@
       
             //   localStorage.setItem("highScore", JSON.stringify(highScore))
             highScoreNode.innerHTML =`High Score: ${highScore}`
+            let dead = 0
         btn.onclick = function () {
             
+            dead = 0;
             score++;
             scoreNode.innerHTML =`Score: ${score}`
             if (highScore<=score) {
@@ -54,6 +61,21 @@
 
         }
 
+
+        function changePosition() {
+            let top = Math.floor(Math.random()*801-400);
+            let left = Math.floor(Math.random()*1801-900);
+            btn.style.top = `${top}px`;
+            btn.style.left = `${left}px`;
+            dead ++;
+            console.log(dead);
+            if (dead>3) {
+                clearInterval(myvar);
+                btn.style.display = "none";
+            }
+        }
+
+        let myvar = setInterval(changePosition,1000);
 //   localStorage.removeItem("highScore");
 
     </script>
