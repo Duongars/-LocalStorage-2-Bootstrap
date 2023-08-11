@@ -51,9 +51,12 @@
             let myvar;
         btn.onclick = function () {
             if (start==0) {
-                start++
+                console.log("hihi");
+                start++;
+                dead = 0;
                  myvar = setInterval(changePosition,1000);
             } else{
+                console.log("aaa");
                 dead = 0;
                 score++;
                 scoreNode.innerHTML =`Score: ${score}`
@@ -76,7 +79,10 @@
             console.log(dead);
             if (dead>3) {
                 clearInterval(myvar);
-                btn.style.display = "none";
+                btn.style.top = "0px";
+                 btn.style.left = "0px";
+                 start = 0;
+               
             }
         }
 
