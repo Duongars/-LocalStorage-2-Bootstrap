@@ -19,8 +19,7 @@
         }
         button {
             position: relative;
-            top : 400px;
-            left : -900px;
+            
         }
     </style>
 </head>
@@ -47,16 +46,22 @@
       
             //   localStorage.setItem("highScore", JSON.stringify(highScore))
             highScoreNode.innerHTML =`High Score: ${highScore}`
-            let dead = 0
+            let dead = 0;
+            let start = 0;
+            let myvar;
         btn.onclick = function () {
-            
-            dead = 0;
-            score++;
-            scoreNode.innerHTML =`Score: ${score}`
-            if (highScore<=score) {
-                highScore = score;
-                localStorage.setItem("highScore", JSON.stringify(highScore))
-                highScoreNode.innerHTML =`High Score: ${highScore}`
+            if (start==0) {
+                start++
+                 myvar = setInterval(changePosition,1000);
+            } else{
+                dead = 0;
+                score++;
+                scoreNode.innerHTML =`Score: ${score}`
+                if (highScore<=score) {
+                    highScore = score;
+                    localStorage.setItem("highScore", JSON.stringify(highScore))
+                    highScoreNode.innerHTML =`High Score: ${highScore}`
+            }
             }
 
         }
@@ -75,7 +80,7 @@
             }
         }
 
-        let myvar = setInterval(changePosition,1000);
+        // let myvar = setInterval(changePosition,1000);
 //   localStorage.removeItem("highScore");
 
     </script>
